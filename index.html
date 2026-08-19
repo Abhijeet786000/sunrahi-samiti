@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>श्री सुनराही देवी नव युवक संघ - कानपुर</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-logo"><i class="fa-solid fa-om"></i></div>
+    <div class="header-title">
+      <h1>श्री सुनराही देवी नव युवक संघ</h1>
+      <p>बर्तन बाजार, कानपुर • गणेश महोत्सव</p>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Area -->
+  <main class="app-content">
+
+    <!-- TAB 1: HOME -->
+    <section id="tab-home" class="tab-page active">
+      <div class="hero-banner">
+        <span class="badge"><i class="fa-solid fa-bell"></i>श्री गणेश महोत्सव</span>
+        <h2>भगवान श्री गणेश की असीम अनुकंपा</h2>
+        <p>समस्त कानपुर वासियों का हार्दिक स्वागत एवं अभिनंदन है</p>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="quick-actions-grid">
+        <a href="tel:+919839272169" class="btn-action">
+          <i class="fa-solid fa-phone"></i>
+          <span>कॉल करें</span>
+        </a>
+        <a href="https://maps.google.com/?q=Bartan+Bazar+Kanpur" target="_blank" class="btn-action">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>पंडाल लोकेशन</span>
+        </a>
+        <button class="btn-action" onclick="switchTabById('tab-booking')">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <span>आरती बुकिंग</span>
+        </button>
+        <button class="btn-action" onclick="switchTabById('tab-donation')">
+          <i class="fa-solid fa-qrcode"></i>
+          <span>चंदा / दान</span>
+        </button>
+      </div>
+
+      <!-- Today's Highlights -->
+      <div class="card">
+        <h3><i class="fa-solid fa-clock card-icon"></i> आज का आरती एवं भोग समय</h3>
+        <ul class="time-list">
+          <li>
+            <span><i class="fa-solid fa-sun text-accent"></i> प्रातः कालीन महाआरती</span>
+            <strong>08:00 AM</strong>
+          </li>
+          <li>
+            <span><i class="fa-solid fa-bowl-rice text-accent"></i> भोग एवं महाप्रसाद</span>
+            <strong>01:00 PM</strong>
+          </li>
+          <li>
+            <span><i class="fa-solid fa-moon text-accent"></i> संध्या महाआरती</span>
+            <strong>07:30 PM</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Volunteer Callout -->
+      <div class="card volunteer-box">
+        <div>
+          <h4>नव युवक सेवा दल से जुड़ें</h4>
+          <p>महोत्सव व्यवस्था हेतु कार्यकर्ता बनें</p>
+        </div>
+        <button class="btn-sm" onclick="openVolunteerModal()">रजिस्टर</button>
+      </div>
+    </section>
+
+    <!-- TAB 2: SEVA & AARTI BOOKING -->
+    <section id="tab-booking" class="tab-page">
+      <div class="card">
+        <h3><i class="fa-solid fa-calendar-plus card-icon"></i> आरती / भोग सेवा बुकिंग</h3>
+        <p class="subtitle">आरती संकल्प अथवा भोग सेवा हेतु विवरण भरें</p>
+
+        <form id="booking-form" onsubmit="submitBooking(event)">
+          <div class="input-group">
+            <label>भक्त का पूरा नाम *</label>
+            <input type="text" id="book-name" required placeholder="उदा. राहुल गुप्ता" />
+          </div>
+
+          <div class="input-group">
+            <label>मोबाइल नंबर *</label>
+            <input type="tel" id="book-phone" required placeholder="उदा. 98392XXXXX" />
+          </div>
+
+          <div class="input-group">
+            <label>सेवा का प्रकार *</label>
+            <select id="book-type">
+              <option value="प्रातः कालीन महाआरती संकल्प">प्रातः कालीन महाआरती संकल्प</option>
+              <option value="संध्या महाआरती संकल्प">संध्या महाआरती संकल्प</option>
+              <option value="छप्पन भोग सेवा">छप्पन भोग सेवा</option>
+              <option value="दैनिक प्रसाद वितरण सेवा">दैनिक प्रसाद वितरण सेवा</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>पसंदीदा दिनांक *</label>
+            <input type="date" id="book-date" required />
+          </div>
+
+          <div class="input-group">
+            <label>गोत्र / संकल्प संदेश (ऐच्छिक)</label>
+            <input type="text" id="book-gotra" placeholder="उदा. कश्यप गोत्र / सपरिवार" />
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <i class="fa-brands fa-whatsapp"></i> व्हाट्सएप पर बुकिंग भेजें
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 3: CHANDA / DONATIONS WITH RECEIPT -->
+    <section id="tab-donation" class="tab-page">
+      <div class="card text-center">
+        <h3><i class="fa-solid fa-hand-holding-dollar card-icon"></i> चंदा सेवा एवं रसीद</h3>
+        <p class="subtitle">प्रत्यक्ष UPI भुगतान कर डिजिटल रसीद प्राप्त करें</p>
+
+        <div id="qrcode" class="qr-container"></div>
+        <p class="upi-id">UPI ID: <strong>9839272169@upi</strong></p>
+
+        <div class="input-group">
+          <label>दानकर्ता का नाम:</label>
+          <input type="text" id="donor-name" placeholder="अपना नाम दर्ज करें" />
+        </div>
+
+        <div class="input-group">
+          <label>सहयोग राशि (₹):</label>
+          <input type="number" id="amount-input" value="501" min="1" />
+        </div>
+
+        <div class="btn-stack">
+          <a id="pay-upi-btn" href="#" class="btn-primary">
+            <i class="fa-solid fa-bolt"></i> Pay Via UPI App
+          </a>
+          <button type="button" class="btn-secondary" onclick="generateReceipt()">
+            <i class="fa-solid fa-receipt"></i> डिजिटल रसीद देखें / डाउनलोड करें
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SCHEDULE -->
+    <section id="tab-schedule" class="tab-page">
+      <div class="card">
+        <h3><i class="fa-solid fa-calendar-days card-icon"></i> संपूर्ण महोत्सव कार्यक्रम</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="day-badge">Day 1</span>
+            <div>
+              <h4>श्री गणेश प्रतिमा स्थापना</h4>
+              <p>प्रातः 09:00 बजे - भव्य शोभायात्रा एवं वेदी पूजन</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="day-badge">Day 2</span>
+            <div>
+              <h4>सुंदरकांड पाठ एवं भजन संध्या</h4>
+              <p>सायं 06:00 बजे से प्रभु इच्छा तक</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="day-badge">Day 3</span>
+            <div>
+              <h4>छप्पन भोग एवं महाप्रसाद</h4>
+              <p>दोपहर 12:00 बजे - विशाल भंडारा</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="day-badge">Day 4</span>
+            <div>
+              <h4>सांस्कृतिक कार्यक्रम व झांकी</h4>
+              <p>सायं 07:00 बजे से विशेष प्रस्तुति</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="day-badge">Day 5</span>
+            <div>
+              <h4>भव्य विसर्जन यात्रा</h4>
+              <p>दोपहर 01:00 बजे (गंगा बैराज मार्ग)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: ABOUT & CONTACT -->
+    <section id="tab-about" class="tab-page">
+      <div class="card text-center">
+        <div class="sangh-avatar"><i class="fa-solid fa-om"></i></div>
+        <h2>श्री सुनराही देवी नव युवक संघ</h2>
+        <p class="subtitle">बर्तन बाजार, कानपुर, उत्तर प्रदेश (208001)</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-address-book card-icon"></i> संपर्क सूत्र एवं पता</h3>
+        <ul class="contact-list">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>स्थान:</strong>
+              <p>बर्तन बाजार, कानपुर, उत्तर प्रदेश 208001</p>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>मोबाइल नंबर:</strong>
+              <p><a href="tel:+919839272169">+91 98392 72169</a></p>
+            </div>
+          </li>
+          <li>
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>व्हाट्सएप हेल्पलाइन:</strong>
+              <p><a href="https://wa.me/919839272169" target="_blank">+91 98392 72169</a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('tab-home', this)">
+      <i class="fa-solid fa-house"></i>
+      <span>होम</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('tab-booking', this)">
+      <i class="fa-solid fa-hand-holding-heart"></i>
+      <span>आरती बुक</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('tab-donation', this)">
+      <i class="fa-solid fa-qrcode"></i>
+      <span>चंदा / दान</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('tab-schedule', this)">
+      <i class="fa-solid fa-calendar-days"></i>
+      <span>कार्यक्रम</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('tab-about', this)">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>विवरण</span>
+    </button>
+  </nav>
+
+  <!-- MODAL: Volunteer Registration -->
+  <div id="volunteer-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeVolunteerModal()">&times;</span>
+      <h3><i class="fa-solid fa-hands-praying text-accent"></i> सेवादार पंजीकरण</h3>
+      <p class="subtitle">गणेश उत्सव में व्यवस्था हेतु अपना नाम दर्ज करें</p>
+      
+      <form onsubmit="submitVolunteer(event)">
+        <div class="input-group">
+          <label>आपका नाम *</label>
+          <input type="text" id="vol-name" required placeholder="उदा. अमित कुमार" />
+        </div>
+        <div class="input-group">
+          <label>मोबाइल नंबर *</label>
+          <input type="tel" id="vol-phone" required placeholder="उदा. 98392XXXXX" />
+        </div>
+        <div class="input-group">
+          <label>पता / मोहल्ला *</label>
+          <input type="text" id="vol-address" required placeholder="उदा. चौक / बर्तन बाजार" />
+        </div>
+        <button type="submit" class="btn-primary">व्हाट्सएप पर भेजें</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Donation Receipt Slip -->
+  <div id="receipt-modal" class="modal">
+    <div class="modal-content receipt-slip">
+      <span class="close-btn" onclick="closeReceiptModal()">&times;</span>
+      <div class="receipt-header">
+        <i class="fa-solid fa-om receipt-logo"></i>
+        <h3>श्री सुनराही देवी नव युवक संघ</h3>
+        <p>बर्तन बाजार, कानपुर (उ.प्र.)</p>
+        <span class="receipt-tag">डिजिटल सहयोग पावती</span>
+      </div>
+      <hr class="receipt-divider" />
+      <div class="receipt-details">
+        <p><strong>रसीद क्र.:</strong> <span id="rec-id">SSD-8492</span></p>
+        <p><strong>दिनांक:</strong> <span id="rec-date">19/08/2026</span></p>
+        <p><strong>दानकर्ता:</strong> <span id="rec-name">भक्त</span></p>
+        <p><strong>सहयोग राशि:</strong> <span id="rec-amount" class="text-accent">₹501</span></p>
+        <p><strong>माध्यम:</strong> UPI (9839272169@upi)</p>
+      </div>
+      <hr class="receipt-divider" />
+      <p class="receipt-footer">भगवान श्री गणेश आपके परिवार पर कृपा बनाए रखें।</p>
+      <button class="btn-primary" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> रसीद प्रिंट / सेव करें
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
