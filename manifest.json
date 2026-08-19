@@ -1,0 +1,15 @@
+{
+  "name": "श्री सुनराही देवी नव युवक संघ",
+  "short_name": "Sunrahi Sangh",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d84315",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3233/3233483.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
